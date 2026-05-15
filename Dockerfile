@@ -1,13 +1,13 @@
-# Use official Tomcat image
-FROM tomcat:11.0-jdk17
+# Use Tomcat 9 (supports javax.servlet)
+FROM tomcat:9.0-jdk17
 
-# Remove default apps (optional clean)
+# Remove default apps
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy your WAR file into Tomcat
-COPY bankapp.war /usr/local/tomcat/webapps/ROOT.war
+# Copy generated WAR file
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
 
-# Expose port
+# Expose Tomcat port
 EXPOSE 8080
 
 # Start Tomcat
